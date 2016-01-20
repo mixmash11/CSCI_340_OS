@@ -16,3 +16,9 @@
 #include "utils.h"	// your own functions
 
 // Now you put your implementation of the function prototypes here...
+int read( char* file_name, v_struct* p_vec_array )
+{
+    char ex_string[10] = "file.txt";
+    
+    printf("%s\n", ex_string);
+}
