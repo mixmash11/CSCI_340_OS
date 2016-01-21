@@ -29,6 +29,8 @@ int main( int argc, char** argv ) {
     
     v_struct ex_v_struct;
     v_struct vec_array[2];
+    double x_test;
+    double y_test;
     
     char fileN_string[15] = "vectors.txt";
     
@@ -68,6 +70,13 @@ int main( int argc, char** argv ) {
 	//	    For example:
 	//		r = 10.00, theta = 180.00 degrees, theta = 3.14 radians, x_comp = -10.00, y_comp = 0.00 
 	//
+    
+        // TEST FOR x_component, y_component
+    x_test = x_component(vec_array);
+    printf("X val is %f\n", x_test);
+    
+    y_test = y_component(vec_array);
+    printf("Y val is %f\n", y_test);
     
     
 
