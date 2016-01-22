@@ -138,7 +138,7 @@ read (char* file_name, v_struct* p_vec_array)
   //  printf ("Closing file...\n");
   fclose (vectorFile);
   //  printf ("File closed...\n");
-  return (vector_iterator );
+  return (vector_iterator - 1 );
 }
 
 double
