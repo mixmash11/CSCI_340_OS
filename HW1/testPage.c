@@ -19,9 +19,9 @@ main (int argc, char** argv)
   int vector_iterator;
   double radius_in;
   double theta_in;
-  v_struct *vector_array;
+  v_struct *p_vec_array;
 
-  vector_array = malloc (TOTAL_VECS * sizeof (v_struct));
+  p_vec_array = malloc (TOTAL_VECS * sizeof (v_struct));
   vector_iterator = 0;
 
   //  BEGIN CODE 
@@ -33,12 +33,12 @@ main (int argc, char** argv)
     }
 
   // OPEN FILE
-  printf ("Opening file...\n");
+  //  printf ("Opening file...\n");
 
   vectorFile = fopen (argv[1], "r");
 
   //  READ FILE
-  printf ("Reading file...\n");
+  //  printf ("Reading file...\n");
 
   //  READ LOOP
   while (!feof (vectorFile))
@@ -53,9 +53,9 @@ main (int argc, char** argv)
       //      }
 
       //  READ LINE INTO RADIUS VALUE
-      
+
       //      printf ("     Reading radius...\n");
-      
+
       string_iterator = 0;
       while (line_String[string_iterator] != ',')
         {
@@ -69,7 +69,7 @@ main (int argc, char** argv)
       string_iterator++; // MOVES TO CHARACTER AFTER COMMA
 
       //  READ LINE INTO THETA VALUE
-      
+
       //      printf ("     Reading theta...\n");
       theta_iterator = 0;
       while (line_String[string_iterator] != '\0')
@@ -90,45 +90,45 @@ main (int argc, char** argv)
       radius_in = atof (radius_String);
       theta_in = atof (theta_String);
 
-//      printf ("Radius is: %.2f, ", radius_in);
-//      printf ("Theta is: %.2f\n", theta_in);
+      //      printf ("Radius is: %.2f, ", radius_in);
+      //      printf ("Theta is: %.2f\n", theta_in);
 
       //  CHECK/CORRECT THETA VALUES
       while (theta_in > 360)
         {
-//          printf ("     Theta TOO HIGH: %.2f\n", theta_in);
+          //          printf ("     Theta TOO HIGH: %.2f\n", theta_in);
 
           theta_in = theta_in - 360;
 
-//          printf ("Theta is: %.2f\n", theta_in);
+          //          printf ("Theta is: %.2f\n", theta_in);
         }
       while (theta_in < 0)
         {
-//          printf ("     Theta TOO LOW: %.2f\n", theta_in);
+          //          printf ("     Theta TOO LOW: %.2f\n", theta_in);
 
           theta_in = theta_in + 360;
 
-//          printf ("Theta is: %.2f\n", theta_in);
+          //          printf ("Theta is: %.2f\n", theta_in);
         }
 
       //  ENTER VALUES INTO VECTOR ARRAY
-      vector_array[vector_iterator].r = radius_in;
-      vector_array[vector_iterator].theta = theta_in;
+      p_vec_array[vector_iterator].r = radius_in;
+      p_vec_array[vector_iterator].theta = theta_in;
 
       vector_iterator++;
 
     }
 
-  for (vector_iterator = 0; vector_iterator < 10; vector_iterator = vector_iterator + 1 )
-    {
-      printf ("Vector %i radius is: %.2f\n", vector_iterator, vector_array[vector_iterator].r);
-      printf ("Vector %i theta is: %.2f\n", vector_iterator, vector_array[vector_iterator].theta);
-    }
+  //  for (vector_iterator = 0; vector_iterator < 10; vector_iterator = vector_iterator + 1 )
+  //    {
+  //      printf ("Vector %i radius is: %.2f\n", vector_iterator, p_vec_array[vector_iterator].r);
+  //      printf ("Vector %i theta is: %.2f\n", vector_iterator, p_vec_array[vector_iterator].theta);
+  //    }
 
-  printf ("Closing file...\n");
+  //  printf ("Closing file...\n");
   fclose (vectorFile);
-  printf ("File closed...\n");
+  //  printf ("File closed...\n");
 
-  printf ("End of Program\n");
+  //  printf ("End of Program\n");
   return 0;
 }
