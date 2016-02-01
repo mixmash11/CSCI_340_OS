@@ -31,8 +31,8 @@ main (int argc, char** argv)
   int runs = 1; // FIX
 
   //  INITIATE PARSED INPUT FIELDS
-  pui.name = (char*) malloc (10);
-  pui.argv = (char*) malloc (50);
+//  pui.name = (char*) malloc (10);
+//  pui.argv = (char*) malloc (50);
 
   //  TEST PARSED INPUT
 
