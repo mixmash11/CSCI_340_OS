@@ -5,6 +5,7 @@
       <in>hw2.c</in>
       <in>shell.c</in>
       <in>shell.h</in>
+      <in>testFile.c</in>
     </df>
   </logicalFolder>
   <projectmakefile>makefile</projectmakefile>
@@ -32,6 +33,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -47,7 +50,7 @@
         </runcommandpicklist>
         <runcommand>"${OUTPUT_PATH}"</runcommand>
         <rundir>.</rundir>
-        <buildfirst>false</buildfirst>
+        <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>
         <environment>
