@@ -1,0 +1,3 @@
+gcc -c -Wall -g shell.c
+gcc -c -Wall -g hw2.c
+gcc shell.o hw2.o -o hw2
