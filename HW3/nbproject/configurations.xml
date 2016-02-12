@@ -5,10 +5,7 @@
       <in>hw2.c</in>
       <in>shell.c</in>
     </df>
-    <logicalFolder name="f1"
-                   displayName="TestFiles"
-                   projectFiles="true"
-                   kind="ROOT">
+    <logicalFolder name="f1" displayName="TestFiles" projectFiles="true">
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -32,6 +29,8 @@
       </toolsSet>
       <flagsDictionary>
         <element flagsID="0" commonFlags="-g"/>
+        <element flagsID="1"
+                 commonFlags="-mtune=generic -march=x86-64 -g -fstack-protector"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
@@ -47,11 +46,14 @@
           <preBuildCommand></preBuildCommand>
         </preBuild>
       </makefileType>
-      <item path="hw2.c" ex="false" tool="0" flavor2="0">
-        <cTool flags="0">
+      <item path="hw2.c" ex="false" tool="0" flavor2="2">
+        <cTool flags="1">
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
         </cTool>
       </item>
-      <item path="shell.c" ex="false" tool="0" flavor2="0">
+      <item path="shell.c" ex="false" tool="0" flavor2="2">
         <cTool flags="0">
         </cTool>
       </item>
