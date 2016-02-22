@@ -20,6 +20,74 @@
 const char* valid_builtin_commands[] = {"cd", "exit", NULL};
 
 // --------------------------------------------
+// Student implemented code below
+// --------------------------------------------
+
+//Determines if an ampersand is the last argument of a command
+
+int ampersand_exists(command_t* p_cmd) {
+
+
+    if (my_strequal(p_cmd->argv[p_cmd->argc - 1], "&"))
+        return TRUE;
+
+    return FALSE;
+}
+
+static void sig_child_handler(int sig) {
+    printf("In SIGCHLD handler\n");
+    int status;
+    pid_t pid;
+    while ((pid = waitpid(-1, &status, WNOHANG)) != -1) {
+        printf("Child Process (%d) has Terminated\n", pid);
+    }
+}
+
+//Modifies argv for a threaded command
+
+char** amp_argv(command_t* p_cmd) {
+    char** new_argv = (char **) malloc((p_cmd->argc - 1) * sizeof (char *));
+    ;
+    int i;
+    int arg_v_len = p_cmd->argc - 1;
+    int str_len;
+    //    printf("Amp argv\n");
+    //    printf("     Argc = %i\n", p_cmd->argc);
+    //    printf("     New argc = %i\n", arg_v_len);
+    //    printf("Amp argv1\n");
+
+    for (i = 0; i < (arg_v_len); i++) {
+
+        //        printf("Amp argv2\n");
+        str_len = my_strlen(p_cmd->argv[i]);
+        //        printf("Amp argv3\n");
+        new_argv[i] = (char*) malloc(str_len);
+        //        printf("Amp argv4\n");
+        my_strncpy(new_argv[i], p_cmd->argv[i], str_len);
+        //        printf("I is %i\n", i);
+
+
+    }
+    //    printf("Amp argv5\n");
+    new_argv[i] = NULL;
+
+    return new_argv;
+}
+
+// Finds a carrot in a command
+
+int car_pos(command_t* p_cmd) {
+    int i;
+
+    for (i = 0; i < p_cmd->argc; i++) {
+        if (my_strequal(p_cmd->argv[i], ">"))
+            return i;
+    }
+
+    return -1;
+}
+
+// --------------------------------------------
 // Implementation for each prototype below
 // --------------------------------------------
 
@@ -106,29 +174,42 @@ int pipe_pos(command_t* p_cmd) {
     return -1;
 }
 
-int ampersand_exists(command_t* p_cmd) {
-
-
-    if (my_strequal(p_cmd->argv[p_cmd->argc - 1], "&"))
-        return TRUE;
-
-    return FALSE;
-}
-
 int execute(command_t* p_cmd) {
     int pid;
     int status;
     char fullpath[MAXSTRLEN];
     int pp; // pipe position in p_cmd->argv (or -1 if no pipe symbol found)
-    int ap;
     int fds[2]; // for pipe
     int cpid1, cpid2;
+    int ap; // ampersand exists (Boolean)
+    int outfile;
+    int child_process_status;
+    int cp; // carrot position
 
+    // THREADED ARGUMENT
     if ((ap = ampersand_exists(p_cmd)) == TRUE) {
 
-        printf("Ampersand found.\n");
-        return 0;
+        if (signal(SIGCHLD, sig_child_handler) == SIG_ERR) {
+            perror("Unable to create new SIGCHLD signal handler!");
+            exit(-1);
+        }
+        pid = fork();
+        if (pid == 0) {
+            find_fullpath(fullpath, p_cmd);
+            //            printf("About to execute with ampersand.\n");
+            execv(fullpath, amp_argv(p_cmd));
+            perror("Child process terminated in error condition!");
+            exit(1);
+        }
+        // endless loop that sleeps every second
+        //        while (1) {
+        //            printf("parent is working ... la la la ...\n");
+        //            sleep(1);
+        //        }
 
+        return wait(&status);
+
+        // NON THREADED ARGUMENT
     } else {
 
         if ((pp = pipe_pos(p_cmd)) != -1) { // if we find a pipe symbol...
@@ -166,6 +247,25 @@ int execute(command_t* p_cmd) {
             waitpid(cpid2, NULL, 0);
 
             return 0;
+        }
+
+        if ((cp = car_pos(p_cmd)) != -1) { //STDOUT TO TEXT
+            outfile = open(p_cmd->argv[p_cmd->argc - 1], O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP);
+
+            if (outfile == -1) {
+                fprintf(stderr, "failed to open file\n");
+            } else if ((cpid1 = fork()) == 0) {
+                p_cmd->argv[cp] = NULL;
+                dup2(outfile, 1);
+                find_fullpath(fullpath, p_cmd);
+                execv(fullpath, p_cmd->argv);
+                exit(-1);
+            }
+            close(outfile);
+            waitpid(cpid1, &child_process_status, 0);
+            return 0;
+
+
         }
 
         // else, no pipe (same as in homework 2)
@@ -295,4 +395,6 @@ int my_strncat(char *dest, const char *src, int n) // append dest to src
 int iswhite(char c) {
     return c == ' ' || c == '\t';
 }
+
+
 
