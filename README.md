@@ -8,3 +8,5 @@ HW2 - Building a command-line interface (incomplete)
 HW3 - Extending functionality of CLI from HW2, added piping functionality (multiple processes)
 
 HW4 - Extending functionality of CLI from HW3, added background thread functionality, redirection of stdout to text file output
+
+HW5 - Develp a small application that uses a Monte Carlo simulation to estimate pi.
