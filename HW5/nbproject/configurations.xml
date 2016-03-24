@@ -26,7 +26,8 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <flagsDictionary>
-        <element flagsID="0" commonFlags="-g -std=gnu90"/>
+        <element flagsID="0"
+                 commonFlags="-mtune=generic -march=x86-64 -g -std=gnu90 -fstack-protector"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
@@ -36,17 +37,22 @@
           <buildCommand>${MAKE} -f Makefile</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath>hw5</executablePath>
+          <cTool>
+            <incDir>
+              <pElem>.</pElem>
+            </incDir>
+          </cTool>
         </makeTool>
         <preBuild>
           <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
           <preBuildCommand></preBuildCommand>
         </preBuild>
       </makefileType>
-      <item path="hw5.c" ex="false" tool="0" flavor2="0">
+      <item path="hw5.c" ex="false" tool="0" flavor2="2">
         <cTool flags="0">
         </cTool>
       </item>
-      <item path="mcsim.c" ex="false" tool="0" flavor2="0">
+      <item path="mcsim.c" ex="false" tool="0" flavor2="2">
         <cTool flags="0">
         </cTool>
       </item>
