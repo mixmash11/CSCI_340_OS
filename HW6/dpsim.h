@@ -28,8 +28,10 @@
  In this function perform the following steps:
  ------------------------------------------------
  1. Initialize all element values in the chopsticks array to -1
- 2. Create a thread for each philosopher (hint: use philosophers[5] array)
- - If a error condition occurs, then immediately exit this function with status value 1.
+ 2. Create a thread for each philosopher 
+   (hint: use philosophers[5] array)
+ - If a error condition occurs, then immediately exit this 
+    function with status value 1.
  3. Execute a infinite loop that does the following:
  If a deadlock condition is found then 
  display deadlock

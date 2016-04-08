@@ -1,0 +1,10 @@
+called: gcc
+	/home/jesse/git/CSCI_340_OS/HW7
+	gcc
+	-c
+	-O
+	-Wall
+	-g
+	-std=gnu90
+	mem.c
+

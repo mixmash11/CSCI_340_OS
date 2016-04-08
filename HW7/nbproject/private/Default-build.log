@@ -1,0 +1,17 @@
+gcc -c -O -Wall -g -std=gnu90 mem.c
+mem.c:23:12: warning: ‘last_placement_position’ defined but not used [-Wunused-variable]
+ static int last_placement_position;
+            ^
+mem.c: In function ‘mem_allocate’:
+mem.c:39:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+mem.c: In function ‘mem_single_time_unit_transpired’:
+mem.c:48:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+mem.c: In function ‘mem_fragment_count’:
+mem.c:57:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+make: *** No rule to make target `hw7.c', needed by `hw7.o'.  Stop.
