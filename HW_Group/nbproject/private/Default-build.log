@@ -1,0 +1,5 @@
+gcc -Wall -g      -c poisson.c
+gcc -Wall -g      -c sched_compare.c
+gcc -Wall -g      -c procs.c
+gcc -Wall -g      -c procheap.c
+gcc -Wall -g      poisson.o sched_compare.o procs.o procheap.o -o sched_compare -lm
