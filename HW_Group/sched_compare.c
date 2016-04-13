@@ -8,6 +8,9 @@
 #define INTER_ARRIVAL_TIME 3   // mean poisson dist
 #define SERVICE_TIME       5   // mean poisson dist
 
+#define TRUE 1
+#define FALSE 0
+
 int main(int argc, char** argv)
 {
   int numprocs, seed;
@@ -51,4 +54,41 @@ int main(int argc, char** argv)
   free(procs);   // procs array was dynamically allocated, so free up
 
   return 0;
+}
+
+void fcfs(){
+    // Run thru array in order
+}
+
+void execute_procs(proc_t *procs, int numprocs){
+    int done = FALSE;
+    int time = 0;
+    //initiate data structures
+    
+    while (done != TRUE){
+        //for loop running thru process data structure
+            //if time >= arrival time:
+                // add process to execution data structure
+                // remove process from process data structure
+        
+        //optimization algorithm performed on execution data structure (place optimal process first)
+        
+        // execution (NO CODE) of first item in execution data structure
+        
+        // time = time + service time
+        
+        // remove first process from execution data structure
+        
+        done = check_done();
+    }
+}
+
+int check_done(){
+    int done = FALSE;
+    // Check if heap is empty.
+    if (heap_size() == 0){
+        done = TRUE;
+    }
+    
+    return done;
 }
