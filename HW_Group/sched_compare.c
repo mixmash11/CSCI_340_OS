@@ -60,9 +60,25 @@ int main(int argc, char** argv)
   return 0;
 }
 
-void fcfs(){
+double fcfs ( proc_t *proc ) {
     // Run thru array in order
+    
+    return proc->arrival_time;
 }
+
+double spn ( proc_t *proc ) {
+    // Run thru array in order
+    
+    return proc->service_time;
+}
+
+double hrrn ( proc_t *proc ) {
+    
+    
+    return ( ( proc->wait_time + proc->service_time ) / proc->service_time );
+}
+
+
 
 void execute_procs(proc_t *procs, int numprocs){
     int done = FALSE;

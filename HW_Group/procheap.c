@@ -1,6 +1,10 @@
 #include <stdio.h>   /* for printf() */
 #include <stdlib.h>  /* for malloc() */
+<<<<<<< Updated upstream
 // #include <values.h>  /* for MAXDOUBLE */
+=======
+//#include <values.h>  /* for MAXDOUBLE */
+>>>>>>> Stashed changes
 
 #include "procs.h"
 
