@@ -1,5 +1,12 @@
 gcc -Wall -g      -c poisson.c
 gcc -Wall -g      -c sched_compare.c
+sched_compare.c: In function ‘execute_procs’:
+sched_compare.c:86:9: warning: implicit declaration of function ‘check_done’ [-Wimplicit-function-declaration]
+         done = check_done();
+         ^
+sched_compare.c:69:9: warning: unused variable ‘time’ [-Wunused-variable]
+     int time = 0;
+         ^
 gcc -Wall -g      -c procs.c
 gcc -Wall -g      -c procheap.c
 gcc -Wall -g      poisson.o sched_compare.o procs.o procheap.o -o sched_compare -lm
