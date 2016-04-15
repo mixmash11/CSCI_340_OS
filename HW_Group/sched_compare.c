@@ -11,6 +11,10 @@
 #define TRUE 1
 #define FALSE 0
 
+typedef enum proc_strats {
+    FIFO, SPN, HRRN
+} proc_strats_t;
+
 int main(int argc, char** argv)
 {
   int numprocs, seed;

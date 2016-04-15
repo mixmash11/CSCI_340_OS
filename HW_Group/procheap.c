@@ -1,6 +1,6 @@
 #include <stdio.h>   /* for printf() */
 #include <stdlib.h>  /* for malloc() */
-#include <values.h>  /* for MAXDOUBLE */
+// #include <values.h>  /* for MAXDOUBLE */
 
 #include "procs.h"
 
@@ -16,9 +16,9 @@ void heap_init(int size, double (*value_func)(const proc_t *))
   heapsize = 0;
   proc_val = value_func;
   heap[0] = malloc(sizeof(proc_t));
-  heap[0]->arrival_time = -MAXDOUBLE;
-  heap[0]->service_time = -MAXDOUBLE;
-  heap[0]->wait_time = -MAXDOUBLE;
+  heap[0]->arrival_time = -999999;
+  heap[0]->service_time = -999999;
+  heap[0]->wait_time = -999999;
 }
 
 void heap_free()
