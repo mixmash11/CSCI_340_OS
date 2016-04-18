@@ -1,6 +1,7 @@
 #include <stdio.h>   // for printf()
 #include <stdlib.h>  // for atoi()
 
+
 #include "procs.h"
 #include "procheap.h"
 
@@ -10,6 +11,41 @@
 
 #define TRUE 1
 #define FALSE 0
+
+
+
+
+void print_result ( proc_t *procs, int total_time, FILE *fp, char* variable) {
+
+	double turn_around_time = 0;
+	double wait_time = 0;
+	double finish_time = 0;
+        
+        
+        
+        
+        
+        
+	wait_time = (total_time - procs->arrival_time);
+	
+	finish_time = (total_time + procs->service_time);
+	
+	turn_around_time = (finish_time - procs->arrival_time);
+        
+        fprintf (fp,"%s,%2.0f,%2.0f,%2.0f,%2.0f,%2.0f\n", variable, procs->arrival_time, procs->service_time, wait_time, finish_time, turn_around_time);
+	
+	
+
+	//printf ( "Arrival Time : %2.0f\n", procs->arrival_time);
+	//printf ( "Service Time : %2.0f\n", procs->service_time);
+	//printf ( "Wait Time : %2.0f\n", wait_time);
+	
+	//printf ( "Finish Time : %2.0f\n", finish_time);
+	//printf ( "Turnaround Time : %2.0f\n", turn_around_time);
+	
+
+	
+}
 
 double fcfs(proc_t *proc) {
 
@@ -81,6 +117,10 @@ int main(int argc, char** argv) {
     proc_t *check_proc;
     proc_t *heap_proc = malloc(sizeof (proc_t));
     int taken = FALSE;
+    
+    char* a = "FCFS";
+    char* b = "SPN";
+    char* c = "HRRN";
 
     if (argc < 3) {
         fprintf(stderr, "USAGE: %s numprocs seed\n", argv[0]);
@@ -89,6 +129,14 @@ int main(int argc, char** argv) {
 
     numprocs = atoi(argv[1]);
     seed = atoi(argv[2]);
+    
+    FILE *fp;
+    
+    fp = fopen("result.csv","w+");
+
+    fprintf(fp, "Algorithm, Arrival Time, Service Time, Wait Time, Finish Time, Turnaround Time\n");
+    
+    
 
     // create an array of numprocs randomly generate (arrival time, service time)
     procs = procs_random_create(numprocs, seed, INTER_ARRIVAL_TIME, SERVICE_TIME);
@@ -151,6 +199,10 @@ int main(int argc, char** argv) {
             heap_age(1);
         } else {
             check_proc = heap_deletemin();
+            
+            print_result(check_proc, total_time, fp, a);
+            
+
             total_time += check_proc->service_time;
             heap_age(check_proc->service_time);
 
@@ -165,6 +217,9 @@ int main(int argc, char** argv) {
 
     printf("SPN\n\n");
 
+    printf("\n\n");
+    fprintf(fp, "Algorithm, Arrival Time, Service Time, Wait Time, Finish Time, Turnaround Time\n");
+    
     heap_free();
     procs = procs_random_create(numprocs, seed, INTER_ARRIVAL_TIME, SERVICE_TIME);
     total_time = 0;
@@ -199,6 +254,10 @@ int main(int argc, char** argv) {
             heap_age(1);
         } else {
             check_proc = heap_deletemin();
+            
+            print_result(check_proc, total_time, fp, b);
+            
+            
             total_time += check_proc->service_time;
             heap_age(check_proc->service_time);
 
@@ -214,12 +273,15 @@ int main(int argc, char** argv) {
     printf("HRRN\n");
 
     heap_free();
+    
+    printf("\n\n");
+    fprintf(fp, "Algorithm, Arrival Time, Service Time, Wait Time, Finish Time, Turnaround Time\n");
     procs = procs_random_create(numprocs, seed, INTER_ARRIVAL_TIME, SERVICE_TIME);
     total_time = 0;
     taken = FALSE;
 
     heap_init(numprocs, hrrn);
-//    printf("Check 3\n");
+    printf("Check 3\n");
 
 
     while ((array_fully_used(procs, numprocs) == FALSE || taken == FALSE) || heap_empty() == FALSE) {
@@ -253,6 +315,10 @@ int main(int argc, char** argv) {
             heap_age(1);
         } else {
             check_proc = heap_deletemin();
+            
+            print_result(check_proc, total_time, fp, c);
+            
+            
             total_time += check_proc->service_time;
             heap_age(check_proc->service_time);
 
@@ -267,6 +333,6 @@ int main(int argc, char** argv) {
 
 //    printf("Check 7\n");
     free(procs); // procs array was dynamically allocated, so free up
-
+    fclose(fp);
     return 0;
 }
