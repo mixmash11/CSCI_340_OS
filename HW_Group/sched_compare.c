@@ -217,8 +217,8 @@ int main(int argc, char** argv) {
 
     printf("SPN\n\n");
 
-    printf("\n\n");
-    fprintf(fp, "Algorithm, Arrival Time, Service Time, Wait Time, Finish Time, Turnaround Time\n");
+    //printf("\n\n");
+    //fprintf(fp, "Algorithm, Arrival Time, Service Time, Wait Time, Finish Time, Turnaround Time\n");
     
     heap_free();
     procs = procs_random_create(numprocs, seed, INTER_ARRIVAL_TIME, SERVICE_TIME);
@@ -274,8 +274,8 @@ int main(int argc, char** argv) {
 
     heap_free();
     
-    printf("\n\n");
-    fprintf(fp, "Algorithm, Arrival Time, Service Time, Wait Time, Finish Time, Turnaround Time\n");
+    //printf("\n\n");
+    //fprintf(fp, "Algorithm, Arrival Time, Service Time, Wait Time, Finish Time, Turnaround Time\n");
     procs = procs_random_create(numprocs, seed, INTER_ARRIVAL_TIME, SERVICE_TIME);
     total_time = 0;
     taken = FALSE;

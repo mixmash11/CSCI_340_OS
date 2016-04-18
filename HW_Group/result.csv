@@ -99,7 +99,6 @@ FCFS,314, 7,80,401,87
 FCFS,314, 7,87,408,94
 FCFS,314, 7,94,415,101
 FCFS,314, 7,101,422,108
-Algorithm, Arrival Time, Service Time, Wait Time, Finish Time, Turnaround Time
 SPN, 0, 0, 0, 0, 0
 SPN, 2, 4, 0, 6, 4
 SPN, 4, 5, 2,11, 7
@@ -200,7 +199,6 @@ SPN,314, 7,80,401,87
 SPN,314, 7,87,408,94
 SPN,314, 7,94,415,101
 SPN,314, 7,101,422,108
-Algorithm, Arrival Time, Service Time, Wait Time, Finish Time, Turnaround Time
 HRRN, 0, 0, 0, 0, 0
 HRRN, 2, 4, 0, 6, 4
 HRRN, 4, 5, 2,11, 7
