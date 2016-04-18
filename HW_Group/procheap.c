@@ -1,10 +1,10 @@
 #include <stdio.h>   /* for printf() */
 #include <stdlib.h>  /* for malloc() */
-<<<<<<< Updated upstream
-// #include <values.h>  /* for MAXDOUBLE */
-=======
-//#include <values.h>  /* for MAXDOUBLE */
->>>>>>> Stashed changes
+//<<<<<<< Updated upstream
+//// #include <values.h>  /* for MAXDOUBLE */
+//=======
+////#include <values.h>  /* for MAXDOUBLE */
+//>>>>>>> Stashed changes
 
 #include "procs.h"
 
@@ -50,7 +50,7 @@ int heap_insert(proc_t *elem)
   
   /* Adjust its position */
   int pos = heapsize;
-  while (proc_val(heap[pos/2]) > proc_val(elem)) {
+  while (proc_val(heap[pos/2]) > proc_val(elem) && pos != 1) {
     heap[pos] = heap[pos/2];
     pos /= 2;
   }

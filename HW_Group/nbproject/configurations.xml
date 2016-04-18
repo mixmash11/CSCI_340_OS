@@ -29,8 +29,6 @@
       </toolsSet>
       <flagsDictionary>
         <element flagsID="0" commonFlags="-g"/>
-        <element flagsID="1"
-                 commonFlags="-mtune=generic -march=x86-64 -g -fstack-protector"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
@@ -47,27 +45,15 @@
         </preBuild>
       </makefileType>
       <item path="poisson.c" ex="false" tool="0" flavor2="2">
-        <cTool flags="1">
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
+        <cTool flags="0">
         </cTool>
       </item>
       <item path="procheap.c" ex="false" tool="0" flavor2="2">
-        <cTool flags="1">
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
+        <cTool flags="0">
         </cTool>
       </item>
       <item path="procs.c" ex="false" tool="0" flavor2="2">
-        <cTool flags="1">
-          <incDir>
-            <pElem>/usr/lib/gcc/x86_64-linux-gnu/4.8/include</pElem>
-            <pElem>/usr/include/x86_64-linux-gnu/bits</pElem>
-            <pElem>/usr/include</pElem>
-            <pElem>.</pElem>
-          </incDir>
+        <cTool flags="0">
         </cTool>
       </item>
       <item path="sched_compare.c" ex="false" tool="0" flavor2="2">
