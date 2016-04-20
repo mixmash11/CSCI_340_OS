@@ -49,8 +49,9 @@
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" 100 1</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 1000 5</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" 100 1</runcommand>
+        <runcommand>"${OUTPUT_PATH}" 1000 5</runcommand>
         <rundir>.</rundir>
         <buildfirst>false</buildfirst>
         <terminal-type>0</terminal-type>
